@@ -14,8 +14,8 @@ import com.google.appengine.api.urlfetch.HTTPResponse;
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
 
 @RunWith(DevAppServerTestRunner.class)
-@DevAppServerTest(HelloWorldTest.TestConfig.class)
-public class HelloWorldTest {
+@DevAppServerTest(IntegrationTest.TestConfig.class)
+public class IntegrationTest {
 
   public class TestConfig extends BaseDevAppServerTestConfig {
 
@@ -62,10 +62,10 @@ public class HelloWorldTest {
     testHelper.tearDown();
   }
 
-  @Test public void testHelloWorld() throws Exception {
+  @Test public void testHello() throws Exception {
     URL url = new URL("http://localhost:" + port + "/hello");
     HTTPResponse response = URLFetchServiceFactory.getURLFetchService().fetch(url);
     assertEquals(200, response.getResponseCode());
-    assertEquals("Hello world!", new String(response.getContent(), "UTF-8"));
+    assertEquals("used", new String(response.getContent(), "UTF-8"));
   }
 }
